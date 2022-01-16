@@ -1,20 +1,29 @@
+// ignore_for_file: overridden_fields
+
 part of 'calculator_bloc.dart';
 
-
 class CalculatorState {
- final CalculatorModel? model;
-  CalculatorState({this.model});
-}
-
-class CalculatorCompleted extends CalculatorState{
   final CalculatorModel? model;
- CalculatorCompleted({this.model});
-}
-class CalculatorEmpty extends CalculatorState{
- CalculatorEmpty();
+  List<dynamic>? history;
+  CalculatorState({this.model, this.history});
 }
 
-class CalculatorError extends CalculatorState{
- final String message;
- CalculatorError(this.message);
+class CalculatorCompleted extends CalculatorState {
+  @override
+  final CalculatorModel? model;
+  @override
+  final List<dynamic>? history;
+  CalculatorCompleted({this.model,this.history});
+}
+
+class CalculatorEmpty extends CalculatorState {
+  CalculatorEmpty();
+}
+
+class CalculatorError extends CalculatorState {
+  final String message;
+  final MaterialColor backgroundColors;
+  final Duration duration;
+  final Color textColors;
+  CalculatorError(this.message,this.backgroundColors,this.duration,this.textColors);
 }

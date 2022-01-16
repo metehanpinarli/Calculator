@@ -24,14 +24,10 @@ class CalculatorRepository {
         case "*":
           result = _calculatorManager.multiply(model);
           break;
-
-        default:
-          return const Left(Failure("Please select the transaction type"));
       }
-
       return Right(result);
     } catch (e) {
-      return const Left(Failure("Hata"));
+      return const Left(Failure("Error"));
     }
   }
 }

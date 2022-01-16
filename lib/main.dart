@@ -29,7 +29,10 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Task',
         debugShowCheckedModeBanner: false,
         themeMode: ThemeMode.dark,
-        darkTheme: ThemeData(brightness: Brightness.dark, primarySwatch: Colors.deepPurple, scaffoldBackgroundColor: Colors.black),
+        darkTheme: ThemeData(
+          scaffoldBackgroundColor: Colors.black,
+          colorScheme: ColorScheme.fromSwatch(brightness:Brightness.dark,primarySwatch: Colors.deepPurple).copyWith(secondary: Colors.grey[800]),
+        ),
         home: const SafeArea(child: HomeView()),
       ),
     );

@@ -5,5 +5,8 @@ abstract class ButtonEvent {}
 
 class ButtonClicked extends ButtonEvent{
   final bool select;
-  ButtonClicked(this.select);
+  final String? operation;
+  ButtonClicked(this.select,this.operation);
 }
+
+class ButtonClear extends ButtonEvent{}
