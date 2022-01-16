@@ -1,4 +1,4 @@
-import 'package:calculator_task/bloc/operations_bloc.dart';
+import 'package:calculator_task/bloc/calculator/calculator_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,16 +7,16 @@ class TopCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<OperationsBloc, OperationsState>(
+    return BlocBuilder<CalculatorBloc, CalculatorState>(
       builder: (context, state) {
-        if (state is OperationsLoading) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (state is OperationsCompleted) {
-         return buildContainer(text:Text(state.result.toString()));
-        } else if (state is OperationsError) {
-         return buildContainer(text:Text(state.message));
+        if (state is CalculatorCompleted) {
+          return buildContainer(text: Text(state.model!.result.toString()));
+        } else if (state is CalculatorError) {
+          return buildContainer(text: Text(state.message));
+        } else if (state is CalculatorState) {
+          return  buildContainer(text: const Text("No Action Has Been Selected Yet."));
         } else {
-         return buildContainer(text:const Text("No Action Has Been Selected Yet."));
+          return const SizedBox.shrink();
         }
       },
     );
@@ -28,6 +28,6 @@ class TopCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           color: Colors.grey[900],
         ),
-        child: Center(child:text));
+        child: Center(child: text));
   }
 }

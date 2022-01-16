@@ -1,5 +1,4 @@
-import 'package:calculator_task/bloc/operations_bloc.dart';
-import 'package:calculator_task/models/math_operations_model.dart';
+import 'package:calculator_task/bloc/calculator/calculator_bloc.dart';
 import 'package:calculator_task/widget/action_button_widget.dart';
 import 'package:calculator_task/widget/custom_button_widget.dart';
 import 'package:calculator_task/widget/input_widget.dart';
@@ -34,10 +33,10 @@ class _HomeViewState extends State<HomeView> {
                   child: Column(children: [
                     CustomInput(controller: _firstNumber, label: "Firs Number"),
                     CustomInput(controller: _secondNumber, label: "Second Number"),
-                    ActionButton(selected: false, icon: Icons.add, title: 'Add'),
-                    ActionButton(selected: false, icon: Icons.remove, title: 'Subtract'),
-                    ActionButton(selected: false, icon: Icons.close, title: 'Multiply'),
-                    ActionButton(selected: false, icon: Icons.keyboard_arrow_up_outlined, title: 'Divide'),
+                    ActionButton(icon: Icons.add, title: 'Add',operator:"+", selected:false,),
+                    ActionButton(icon: Icons.remove, title: 'Subtract',operator:"-", selected: false,),
+                    ActionButton(icon: Icons.close, title: 'Multiply',operator:"*", selected: false,),
+                    ActionButton(icon: Icons.keyboard_arrow_up_outlined, title: 'Divide',operator:"/", selected: false,),
                     Row(
                       children: [
                         Expanded(
@@ -45,7 +44,7 @@ class _HomeViewState extends State<HomeView> {
                             child: CustomButton(
                                 text: "Clear",
                                 function: () {
-                                  context.read<OperationsBloc>().add(OperationsNoAction());
+                                  context.read<CalculatorBloc>().add(CalculatorClear());
                                   _firstNumber.clear();
                                   _secondNumber.clear();
                                 })),
@@ -55,7 +54,8 @@ class _HomeViewState extends State<HomeView> {
                             child: CustomButton(
                               text: "Calculate",
                               function: () {
-                                BlocProvider.of<OperationsBloc>(context).add(OperationsAdd(MathOperationsModel(secondNumber: int.parse(_secondNumber.text), firstNumber: int.parse(_firstNumber.text))));
+                                context.read<CalculatorBloc>().add(CalculatorResult(int.parse(_firstNumber.text),int.parse(_secondNumber.text)));
+
                               },
                             ))
                       ],

@@ -1,7 +1,8 @@
+import 'package:calculator_task/bloc/button/button_bloc.dart';
 import 'package:calculator_task/view/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'bloc/operations_bloc.dart';
+import 'bloc/calculator/calculator_bloc.dart';
 import 'injectable.dart';
 
 Future<void> main() async {
@@ -15,8 +16,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => locator<OperationsBloc>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<CalculatorBloc>(
+          create: (context) => locator<CalculatorBloc>(),
+        ),
+        BlocProvider<ButtonBloc>(
+          create: (context) => ButtonBloc(),
+        ),
+      ],
       child: MaterialApp(
         title: 'Flutter Task',
         debugShowCheckedModeBanner: false,
