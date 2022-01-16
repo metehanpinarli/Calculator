@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'Flutter Task',
+        title: 'Flutter Calculator',
         debugShowCheckedModeBanner: false,
         themeMode: ThemeMode.dark,
         darkTheme: ThemeData(

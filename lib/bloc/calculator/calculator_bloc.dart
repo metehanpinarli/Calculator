@@ -46,4 +46,5 @@ class CalculatorBloc extends Bloc<CalculatorEvent, CalculatorState> {
       });
     }
   }
+
 }
